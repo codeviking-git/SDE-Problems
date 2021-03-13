@@ -1,0 +1,21 @@
+class GfG{
+	public Stack<Integer> sort(Stack<Integer> s)
+	{
+		//add code here.
+		if(s.isEmpty()) return s;
+		int value = s.pop();
+		sort(s);
+		insert(s, value);
+		return s;
+	}
+	public Stack<Integer> insert(Stack<Integer> s, int value){
+	   if(s.isEmpty() || value > s.peek()) {
+	       s.push(value);
+	       return s;
+	   }
+	   int highest = s.pop();
+	   insert(s, value);
+	   s.push(highest);
+	   return s;
+	}
+}

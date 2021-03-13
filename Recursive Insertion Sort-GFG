@@ -1,0 +1,22 @@
+//I've recursively implemented this(Insertion Sort).
+
+class Solution
+{
+  static void insert(int arr[],int i, n)
+  {
+       // Your code here
+       for(int j = n-1; j>0; j--){
+           if(arr[j]>i) arr[j+1] = arr[j];
+           else arr[j+1] = i;
+       }
+       
+  }
+  //Function to sort the array using insertion sort algorithm.
+  public void insertionSort(int arr[], int n)
+  {
+      //code here
+      if(n == 1) return;
+      insertionSort(arr, n-1);
+      insert(arr, arr[n-1] , n-1);
+  }
+}

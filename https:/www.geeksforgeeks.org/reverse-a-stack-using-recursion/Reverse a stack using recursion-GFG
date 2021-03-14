@@ -1,0 +1,21 @@
+	class GFG {
+    public Stack<Character> reverse(Stack<Character> s)
+    {
+      //add code here.
+      if(s.isEmpty()) return s;
+      char value = s.pop();
+      reverse(s);
+      insert(s, value);
+      return s;
+    }
+    public Stack<Character> insert(Stack<Character> s, char value){
+       if(s.isEmpty()) {
+           s.push(value);
+           return s;
+       }
+       char highest = s.pop();
+       insert(s, value);
+       s.push(highest);
+       return s;
+    }
+  }

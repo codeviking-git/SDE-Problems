@@ -1,0 +1,30 @@
+public class Permutations3 {
+    public static void permutations3(int j, StringBuilder s){
+
+        if(j == s.length()-1){
+            System.out.println(s);
+            return;
+        }
+        int[] frequency = new int[26];
+            for(int i = j; i<s.length(); i++){
+                if(frequency[s.charAt(i) - 'a'] == 0){
+                    swap(i, j, s);
+                    permutations3(j+1, s);
+                    swap(i, j, s);
+                }
+            frequency[s.charAt(i) - 'a']++;
+        }
+        return;
+    }
+    public static void swap(int i , int j, StringBuilder s){
+        String temp = s.substring(i, i+1);
+        s.replace(i, i+1, s.substring(j, j+1));
+        s.replace(j, j+1, temp);
+        return;
+    }
+    public static void main(String args[]){
+        StringBuilder s = new StringBuilder("abca");
+        int k = 0;
+        permutations3(0, s);
+    }
+}

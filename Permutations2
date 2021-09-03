@@ -1,0 +1,37 @@
+public class Permutation2 {
+    public static void permutation2(int j, StringBuilder s, int k){
+        if(j == s.length()-1){
+            System.out.println(s);
+            return;
+        }
+        for(int i = j; i<s.length(); i++){
+            rightRotate(i, j, s);
+            permutation2(j+1, s, k+1);
+            leftRotate(i, j, s);
+        }
+        return;
+    }
+    public static void rightRotate(int i , int j, StringBuilder s){
+        if(i == j) return;
+        String temp = s.substring(i, i+1);
+        for(int k = i; k>j; k--){
+            s.replace(k, k+1, s.substring(k-1, k));
+        }
+        s.replace(j, j+1, temp);
+        return;
+    }
+    public static void leftRotate(int i , int j, StringBuilder s){
+        if(i == j) return;
+        String temp = s.substring(j, j+1);
+        for(int k = j+1; k<=i; k++){
+            s.replace(k-1, k, s.substring(k, k+1));
+        }
+        s.replace(i, i+1, temp);
+        return;
+    }
+    public static void main(String args[]){
+        StringBuilder s = new StringBuilder("abcde");
+        int k = 0;
+        permutation2(0, s, k);
+    }
+}

@@ -1,0 +1,26 @@
+public class Solution {
+    public static void permutation1(int j, StringBuilder s, int k){
+        if(j == s.length()-1){
+            System.out.println(s);
+            return;
+        }
+        for(int i = j; i<s.length(); i++){
+            swap(i, j, s);
+            permutation1(j+1, s, k+1);
+            swap(i, j, s);
+        }
+        return;
+    }
+    public static void swap(int i , int j, StringBuilder s){
+        String temp = s.substring(i, i+1);
+        s.replace(i, i+1, s.substring(j, j+1));
+        s.replace(j, j+1, temp);
+        return;
+    }
+    public static void main(String args[]){
+        StringBuilder s = new StringBuilder("abcdef");
+        int k = 0;
+        permutation1(0, s, k);
+        System.out.println(k);
+    }
+}

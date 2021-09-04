@@ -1,0 +1,32 @@
+class Solution {
+    public int numTilePossibilities(String tiles) {
+        int[] nums = new int[1];
+        StringBuilder s = new StringBuilder();;
+        s.append("" + tiles);
+        letterTilePossibilities(0, s, nums);
+        return (nums[0] - 1);
+    }
+    public static void letterTilePossibilities(int j, StringBuilder s, int[] num){
+        if(j == s.length()){
+            num[0]++;
+            return;
+        }
+        int[] frequency = new int[26];
+        for(int i = j; i<s.length(); i++){
+            if(frequency[s.charAt(i) - 'A'] == 0){
+                swap(i, j, s);
+                letterTilePossibilities(j+1, s, num);
+                swap(i, j, s);
+            }
+            frequency[s.charAt(i) - 'A']++;
+        }
+        num[0]++;
+        return;
+    }
+    public static void swap(int i , int j, StringBuilder s){
+        String temp = s.substring(i, i+1);
+        s.replace(i, i+1, s.substring(j, j+1));
+        s.replace(j, j+1, temp);
+        return;
+    }
+}
